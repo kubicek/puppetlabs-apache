@@ -98,6 +98,38 @@ class apache::params {
       'wsgi'       => 'libapache2-mod-wsgi',
     }
     $mod_libs         = {}
+  } elsif $::osfamily == 'FreeBSD' {
+    $user             = 'www'
+    $group            = 'www'
+    $apache_name      = 'apache22'
+    $httpd_dir        = '/usr/local/etc/apache22'
+    $conf_dir         = "${httpd_dir}"
+    $confd_dir        = "${httpd_dir}/conf.d"
+    $mod_dir          = "${httpd_dir}/mods-available"
+    $mod_enable_dir   = "${httpd_dir}/mods-enabled"
+    $vhost_dir        = "${httpd_dir}/sites-enabled"
+    $conf_file        = 'httpd.conf'
+    $ports_file       = "${conf_dir}/ports.conf"
+    $logroot          = '/var/log/apache2'
+    $lib_path         = '/usr/lib/apache2/modules'
+    $mpm_module       = 'worker'
+    $dev_packages     = ['libaprutil1-dev', 'libapr1-dev', 'apache2-prefork-dev']
+    $default_ssl_cert = '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+    $default_ssl_key  = '/etc/ssl/private/ssl-cert-snakeoil.key'
+    $ssl_certs_dir    = '/etc/ssl/certs'
+    $passenger_root   = '/usr'
+    $passenger_ruby   = '/usr/bin/ruby'
+    $mod_packages     = {
+      'auth_kerb'  => 'libapache2-mod-auth-kerb',
+      'fcgid'      => 'libapache2-mod-fcgid',
+      'passenger'  => 'libapache2-mod-passenger',
+      'perl'       => 'libapache2-mod-perl2',
+      'php5'       => 'libapache2-mod-php5',
+      'proxy_html' => 'libapache2-mod-proxy-html',
+      'python'     => 'libapache2-mod-python',
+      'wsgi'       => 'libapache2-mod-wsgi',
+    }
+    $mod_libs         = {}
   } else {
     fail("Class['apache::params']: Unsupported osfamily: ${::osfamily}")
   }
