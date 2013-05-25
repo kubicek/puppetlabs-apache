@@ -105,7 +105,6 @@ class apache::params {
     $user             = 'www'
     $group            = 'www'
     $apache_name      = 'apache22'
-    $package_name     = "${apache_name}"
     $httpd_dir        = '/usr/local/etc/apache22'
     $conf_dir         = "${httpd_dir}"
     $confd_dir        = "${httpd_dir}/conf.d"
