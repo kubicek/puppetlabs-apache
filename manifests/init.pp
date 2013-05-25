@@ -53,6 +53,10 @@ class apache (
   $httpd_dir  = $apache::params::httpd_dir
   $ports_file = $apache::params::ports_file
   $logroot    = $apache::params::logroot
+  $rootgroup = $::osfamily ? {
+    'freebsd'          => 'wheel',
+    default            => 'root',
+  }
 
   # declare the web server user and group
   # Note: requiring the package means the package ought to create them and not puppet
@@ -123,7 +127,7 @@ class apache (
 
   concat { $ports_file:
     owner  => 'root',
-    group  => 'root',
+    group  => $rootgroup,
     mode   => '0644',
     notify => Service['httpd'],
   }
@@ -149,6 +153,15 @@ class apache (
         $error_documents_path = '/var/www/error'
         $scriptalias          = '/var/www/cgi-bin'
         $access_log_file      = 'access_log'
+      }
+      'freebsd': {
+        $docroot              = '/usr/local/www/apache22/data'
+        $pidfile              = '/var/run/httpd.pid'
+        $error_log            = 'httpd-error.log'
+        $error_documents_path = '/usr/local/www/apache22/error'
+        $scriptalias          = '/usr/local/www/apache22/cgi-bin'
+        $access_log_file      = 'httpd-access.log'
+        $docroot_group        = 'wheel'
       }
     }
     # Template uses:

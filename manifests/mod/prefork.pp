@@ -11,7 +11,7 @@ class apache::mod::prefork (
   }
   File {
     owner => 'root',
-    group => 'root',
+    group => $rootgroup,
     mode  => '0644',
   }
 

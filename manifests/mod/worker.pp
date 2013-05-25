@@ -12,7 +12,7 @@ class apache::mod::worker (
   }
   File {
     owner => 'root',
-    group => 'root',
+    group => $rootgroup,
     mode  => '0644',
   }
 

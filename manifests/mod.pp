@@ -43,7 +43,7 @@ define apache::mod (
     path    => "${mod_dir}/${mod}.load",
     ensure  => file,
     owner   => 'root',
-    group   => 'root',
+    group   => $rootgroup,
     mode    => '0644',
     content => "LoadModule ${mod}_module ${lib_path}/${lib_REAL}\n",
     require => Package['httpd'],

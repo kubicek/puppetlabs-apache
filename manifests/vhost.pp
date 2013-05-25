@@ -62,7 +62,7 @@ define apache::vhost(
     $ip_based           = false,
     $add_listen         = true,
     $docroot_owner      = 'root',
-    $docroot_group      = 'root',
+    $docroot_group      = $rootgroup,
     $serveradmin        = false,
     $configure_firewall = true,
     $ssl                = false,
@@ -340,7 +340,7 @@ define apache::vhost(
     path    => "${apache::vhost_dir}/${priority_real}-${filename}.conf",
     content => template('apache/vhost.conf.erb'),
     owner   => 'root',
-    group   => 'root',
+    group   => $rootgroup,
     mode    => '0644',
     require => [
       Package['httpd'],

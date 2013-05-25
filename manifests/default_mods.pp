@@ -40,6 +40,9 @@ class apache::default_mods {
       apache::mod { 'version': }
       apache::mod { 'vhost_alias': }
     }
+    'freebsd': {
+      apache::mod { 'log_config': }
+    }
   }
 
   include apache::mod::alias
