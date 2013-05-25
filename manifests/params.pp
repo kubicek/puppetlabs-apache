@@ -7,6 +7,7 @@
 # - The $group that Apache runs as
 # - The $apache_name is the name of the package and service on the relevant
 #   distribution
+# - The $package_name is the name of the package on the relevant distribution
 # - The $php_package is the name of the package that provided PHP
 # - The $ssl_package is the name of the Apache SSL package
 # - The $apache_dev is the name of the Apache development libraries package
@@ -29,6 +30,7 @@ class apache::params {
     $user                 = 'apache'
     $group                = 'apache'
     $apache_name          = 'httpd'
+    $package_name         = "${apache_name}"
     $httpd_dir            = '/etc/httpd'
     $conf_dir             = "${httpd_dir}/conf"
     $confd_dir            = "${httpd_dir}/conf.d"
@@ -70,6 +72,7 @@ class apache::params {
     $user             = 'www-data'
     $group            = 'www-data'
     $apache_name      = 'apache2'
+    $package_name     = "${apache_name}"
     $httpd_dir        = '/etc/apache2'
     $conf_dir         = "${httpd_dir}"
     $confd_dir        = "${httpd_dir}/conf.d"
@@ -102,6 +105,7 @@ class apache::params {
     $user             = 'www'
     $group            = 'www'
     $apache_name      = 'apache22'
+    $package_name     = "${apache_name}"
     $httpd_dir        = '/usr/local/etc/apache22'
     $conf_dir         = "${httpd_dir}"
     $confd_dir        = "${httpd_dir}/conf.d"
